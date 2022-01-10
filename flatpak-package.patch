@@ -47,7 +47,7 @@ index 91fea1a84..04ca0109b 100755
  
  # to control whether the debug symbols are kept
  #STRIP = strip --strip-unneeded -R .note -R .comment
-@@ -112,59 +98,44 @@ tarbz2: installer_makefile installer_readme
+@@ -112,59 +98,45 @@ tarbz2: installer_makefile installer_readme
  	mv $(DESTDIR)$(PACKAGE_NAME) $(DESTDIR)$(prefix)
  
  
@@ -87,6 +87,7 @@ index 91fea1a84..04ca0109b 100755
 -		$(DESTDIR)/usr/share/applications/
 -	install -d $(DESTDIR)/usr/share/menu/
 +		$(DESTDIR)/app/share/applications/
++	sed -i 's,/usr,/app,' $(DESTDIR)/app/share/applications/pd-extended.desktop
 +	install -d $(DESTDIR)/app/share/menu/
  	install -p -m0644 $(packages_src)/linux_make/pd-extended.menu \
 -		$(DESTDIR)/usr/share/menu/pd-extended
