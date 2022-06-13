@@ -3,6 +3,8 @@ runtime: org.freedesktop.Platform
 runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 command: pd-extended
+rename-desktop-file: pd-extended.desktop
+rename-icon: pd-extended
 finish-args:
 # Display
   - --share=ipc
@@ -100,9 +102,13 @@ modules:
     buildsystem: simple
     build-commands:
       - ./scripts/auto-build/pd-extended-release-auto-builder.sh
-      - install -Dm644 packages/linux_make/pd-extended.png /app/share/app-info/icons/flatpak/128x128/info.puredata.Pd-extended.png
+      - mv ${FLATPAK_DEST}/share/mime/packages/{pd-extended,$FLATPAK_ID}.xml
+      - mv ${FLATPAK_DEST}/share/icons/hicolor/128x128/mimetypes/{,$FLATPAK_ID.}text-x-puredata.png
+      - mv ${FLATPAK_DEST}/share/icons/hicolor/48x48/mimetypes/{,$FLATPAK_ID.}text-x-puredata.png
+      - desktop-file-edit --set-key=Exec --set-value="pd-extended %F" ${FLATPAK_DEST}/share/applications/pd-extended.desktop
       # AppStream metadata (for app store / package manager)
       - install -Dm644 -t  /app/share/metainfo info.puredata.Pd-extended.metainfo.xml
+      - install -d /app/extensions/Plugins
     cleanup:
       - /lib/pkgconfig
       - /man
