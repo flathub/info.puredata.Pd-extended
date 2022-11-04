@@ -1,6 +1,6 @@
 app-id: info.puredata.Pd-extended
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: pd-extended
 rename-desktop-file: pd-extended.desktop
@@ -25,7 +25,7 @@ finish-args:
 add-extensions:
   org.freedesktop.LinuxAudio.Plugins:
     directory: extensions/Plugins
-    version: '21.08'
+    version: '22.08'
     add-ld-path: lib
     merge-dirs: ladspa
     subdirectories: true
@@ -40,7 +40,6 @@ modules:
   - shared-modules/linux-audio/dssi.json
   - shared-modules/linux-audio/fftw3f.json
   - shared-modules/linux-audio/fluidsynth2.json
-  - shared-modules/linux-audio/jack2.json
   - shared-modules/linux-audio/ladspa.json
   - swig.json
 
