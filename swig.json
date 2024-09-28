@@ -1,7 +1,7 @@
 {
     "name": "swig",
     "config-opts": [
-        "-with-boost-libs=/app/lib",
+        "--with-boost-libs=/app/lib",
         "--without-alllang",
         "--with-guile=/app/bin/guile",
         "--with-guile-config=/app/bin/guile-config"
@@ -12,6 +12,17 @@
             "type": "archive",
             "url": "http://prdownloads.sourceforge.net/swig/swig-3.0.12.tar.gz",
             "sha256": "7cf9f447ae7ed1c51722efc45e7f14418d15d7a1e143ac9f09a668999f4fc94d"
+        },
+        {
+            "type": "file",
+            "url": "https://downloads.sourceforge.net/project/pcre/pcre/8.45/pcre-8.45.tar.bz2",
+            "sha256": "4dae6fdcd2bb0bb6c37b5f97c33c2be954da743985369cddac3546e3218bffb8"
+        },
+        {
+            "type": "shell",
+            "commands": [
+                "./Tools/pcre-build.sh"
+            ]
         }
     ]
 }
