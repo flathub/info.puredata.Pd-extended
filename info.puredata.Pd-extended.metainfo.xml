@@ -21,7 +21,7 @@
       <li>JACK audio backend cannot be used.</li>
     </ul>
     <p>
-      Packages from https://puredata.info/ do not have these limitations.
+      Packages from puredata.info do not have these limitations.
     </p>
     <p>
       Pure Data is an open source visual programming environment that runs on

@@ -1,0 +1,64 @@
+diff --git a/externals/cxc/Makefile b/externals/cxc/Makefile
+index b4bbd7f57..0dc32afa2 100644
+--- a/externals/cxc/Makefile
++++ b/externals/cxc/Makefile
+@@ -35,7 +35,7 @@ EXTRA_DIST = TODO REFERENCES x_connective_pd034.diff x_connective_pd035.diff cxc
+ #
+ #------------------------------------------------------------------------------#
+ 
+-ALL_CFLAGS = -I"$(PD_INCLUDE)"
++ALL_CFLAGS = -I"$(PD_INCLUDE)"  -fpermissive
+ ALL_LDFLAGS =  
+ SHARED_LDFLAGS =
+ ALL_LIBS = 
+diff --git a/externals/ggee/Makefile b/externals/ggee/Makefile
+index b539e5018..f045dbd22 100644
+--- a/externals/ggee/Makefile
++++ b/externals/ggee/Makefile
+@@ -35,7 +35,7 @@ EXTRA_DIST = gui/fatom.h gui/fatom.c
+ #
+ #------------------------------------------------------------------------------#
+ 
+-ALL_CFLAGS = -I"$(PD_INCLUDE)"
++ALL_CFLAGS = -I"$(PD_INCLUDE)" -fpermissive
+ ALL_LDFLAGS =  
+ SHARED_LDFLAGS =
+ ALL_LIBS = 
+diff --git a/externals/plugin~/plugin~.c b/externals/plugin~/plugin~.c
+index 6816195ff..e903a47b2 100644
+--- a/externals/plugin~/plugin~.c
++++ b/externals/plugin~/plugin~.c
+@@ -540,7 +540,7 @@ int plugin_tilde_ladspa_open_plugin (Pd_Plugin_Tilde* x,
+   if (x == NULL || lib_name == NULL || name == NULL || sample_rate == 0)
+   {
+       pd_error(x, "NULL arguments when opening plugin");
+-      return;
++      return 1;
+   }
+ 
+   /* Initialize object struct */
+diff --git a/packages/linux_make/Makefile b/packages/linux_make/Makefile
+index af875f14e..76f1a17d5 100755
+--- a/packages/linux_make/Makefile
++++ b/packages/linux_make/Makefile
+@@ -19,7 +19,7 @@ prefix = /app
+ STRIP = echo
+ 
+ DEBUG_CFLAGS = -g -fno-inline-functions -fno-omit-frame-pointer -Wstrict-aliasing=2
+-OPT_CFLAGS = -O3 -funroll-loops
++OPT_CFLAGS = -O3 -funroll-loops -fpermissive
+ 
+ # bash's HOSTTYPE env var seems more reliable in chroots, use it if its set
+ ifeq ($(HOSTTYPE),)
+diff --git a/pd/src/Makefile.am b/pd/src/Makefile.am
+index 9d03fe4ca..3dd9baaa7 100755
+--- a/pd/src/Makefile.am
++++ b/pd/src/Makefile.am
+@@ -1,6 +1,6 @@
+ AUTOMAKE_OPTIONS = foreign
+ 
+-pd_CFLAGS = -DPD -DINSTALL_PREFIX=\"$(prefix)\"
++pd_CFLAGS = -fpermissive -DPD -DINSTALL_PREFIX=\"$(prefix)\"
+ pd_LDFLAGS =
+ 
+ pdsend_CFLAGS = 
