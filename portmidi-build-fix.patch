@@ -1,0 +1,26 @@
+diff --git a/pd/portmidi/Makefile.am b/pd/portmidi/Makefile.am
+index 1b4d61a48..5365d3b1f 100644
+--- a/pd/portmidi/Makefile.am
++++ b/pd/portmidi/Makefile.am
+@@ -1,7 +1,7 @@
+ # this is built as a "libtool convenience library"
+ # http://sources.redhat.com/automake/automake.html#Libtool-Convenience-Libraries
+ AUTOMAKE_OPTIONS = foreign
+-AM_CFLAGS = -DNEWBUFFER
++AM_CFLAGS = -DNEWBUFFER 
+ INCLUDES = -Ipm_common -Iporttime
+ 
+ noinst_LTLIBRARIES = libportmidi.la
+diff --git a/pd/portmidi/pm_linux/pmlinuxalsa.c b/pd/portmidi/pm_linux/pmlinuxalsa.c
+index 6132e0906..df052c8c4 100755
+--- a/pd/portmidi/pm_linux/pmlinuxalsa.c
++++ b/pd/portmidi/pm_linux/pmlinuxalsa.c
+@@ -204,7 +204,7 @@ static PmError alsa_write_byte(PmInternal *midi, unsigned char byte,
+             /* compute relative time of event = timestamp - now + latency */
+             PmTimestamp now = (midi->time_proc ? 
+                                midi->time_proc(midi->time_info) : 
+-                               Pt_Time(NULL));
++                               Pt_Time());
+             int when = timestamp;
+             /* if timestamp is zero, send immediately */
+             /* otherwise compute time delay and use delay if positive */

@@ -1,6 +1,6 @@
 app-id: info.puredata.Pd-extended
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: pd-extended
 rename-desktop-file: pd-extended.desktop
@@ -25,7 +25,7 @@ finish-args:
 add-extensions:
   org.freedesktop.LinuxAudio.Plugins:
     directory: extensions/Plugins
-    version: '24.08'
+    version: '25.08'
     add-ld-path: lib
     merge-dirs: ladspa
     subdirectories: true
@@ -36,7 +36,6 @@ modules:
 #  - shared-modules/SDL/SDL-1.2.15.json # for pdp_sdl
 #  - shared-modules/SDL/SDL_image-1.2.12.json
   - shared-modules/lame/lame-3.99.5.json
-  - shared-modules/libusb/libusb.json
   - shared-modules/linux-audio/dssi.json
   - shared-modules/linux-audio/fftw3f.json
   - shared-modules/linux-audio/fluidsynth2.json
@@ -79,6 +78,8 @@ modules:
           url-template: https://prdownloads.sourceforge.net/tcl/tk$version-src.tar.gz
 
   - name: libtirpc
+    build-options:
+      cflags: -std=gnu17
     config-opts:
       - --disable-gssapi
     sources:
@@ -89,8 +90,7 @@ modules:
   - name: pd-extended
     rm-configure: true
     build-options:
-      env:
-        CFLAGS: -fpermissive
+      cflags: -fpermissive -std=gnu17
     sources:
       - type: git
         url: https://gitlab.com/pd-extended/pd-extended.git
@@ -102,6 +102,8 @@ modules:
           - oscx-rpc.patch
           - flatpak-package.patch
           - build-fixes.patch
+          - portmidi-build-fix.patch
+          - pd-external-mrpeach-buildfix.patch
       - type: file
         path: info.puredata.Pd-extended.metainfo.xml
     buildsystem: simple
