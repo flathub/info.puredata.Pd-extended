@@ -7,7 +7,7 @@ index b4bbd7f57..0dc32afa2 100644
  #------------------------------------------------------------------------------#
  
 -ALL_CFLAGS = -I"$(PD_INCLUDE)"
-+ALL_CFLAGS = -I"$(PD_INCLUDE)"  -fpermissive
++ALL_CFLAGS = -I"$(PD_INCLUDE)"  -fpermissive -std=gnu17
  ALL_LDFLAGS =  
  SHARED_LDFLAGS =
  ALL_LIBS = 
@@ -62,3 +62,53 @@ index 9d03fe4ca..3dd9baaa7 100755
  pd_LDFLAGS =
  
  pdsend_CFLAGS = 
+diff --git a/externals/iemlib/Make.include b/externals/iemlib/Make.include
+index 13c6c2ff7..4c9d323d0 100644
+--- a/externals/iemlib/Make.include
++++ b/externals/iemlib/Make.include
+@@ -12,6 +12,7 @@ LIB = -ldl -lm -lpthread
+ #select either the DBG and OPT compiler flags below:
+ CFLAGS = -DPD -DUNIX -W -Werror -Wno-unused \
+ 	-Wno-parentheses -Wno-switch -O6 -funroll-loops -fomit-frame-pointer -fno-strict-aliasing \
++	-std=gnu17 -fpermissive \
+ 	-DDL_OPEN -fPIC -fno-stack-protector
+ 
+ diff --git a/externals/ekext/Makefile b/externals/ekext/Makefile
+index d87c32c15..1276e7bbc 100644
+--- a/externals/ekext/Makefile
++++ b/externals/ekext/Makefile
+@@ -31,7 +31,7 @@ EXTRA_DIST = peakit~_license.txt voicing_detector~test3-help.pd maskxor-test.pd
+ #
+ #------------------------------------------------------------------------------#
+ 
+-ALL_CFLAGS = -I"$(PD_INCLUDE)"
++ALL_CFLAGS = -I"$(PD_INCLUDE)" -std=gnu17
+ ALL_LDFLAGS =  
+ SHARED_LDFLAGS =
+ ALL_LIBS = 
+diff --git a/externals/extra/Makefile b/externals/extra/Makefile
+index e3b0e63ef..e0f363abf 100644
+--- a/externals/extra/Makefile
++++ b/externals/extra/Makefile
+@@ -32,7 +32,7 @@ libdir = $(prefix)/lib
+ pkglibdir = $(libdir)/pd-externals
+ objectsdir = $(pkglibdir)
+ 
+-ALL_CFLAGS = -DPD -I$(PD_PATH)/src
++ALL_CFLAGS = -DPD -I$(PD_PATH)/src -std=gnu17
+ ALL_LDFLAGS =  
+ LIBS = 
+ 
+diff --git a/externals/Makefile b/externals/Makefile
+index 96c184243..8cb88e165 100644
+--- a/externals/Makefile
++++ b/externals/Makefile
+@@ -40,7 +40,7 @@ DEST_PATHS = BUILDLAYOUT_DIR=$(BUILDLAYOUT_DIR) \
+ # this variable is to support old "win" directories, rather than "windows"
+ BUILDSRC_OS_NAME = $(OS_NAME)
+ 
+-CFLAGS = -DPD -DHAVE_G_CANVAS_H -DZEXY_LIBRARY -I$(pd_src)/src -Wall -W $(DEBUG_CFLAGS) -I$(gem_src)
++CFLAGS = -std=gnu17 -DPD -DHAVE_G_CANVAS_H -DZEXY_LIBRARY -I$(pd_src)/src -Wall -W $(DEBUG_CFLAGS) -I$(gem_src)
+ LDFLAGS =  
+ LIBS = -lm
+ 
