@@ -51,8 +51,8 @@ modules:
       - chmod 755 /app/lib/libtcl*.so
     sources:
       - type: archive
-        url: https://prdownloads.sourceforge.net/tcl/tcl8.6.17-src.tar.gz
-        sha256: a3903371efcce8a405c5c245d029e9f6850258a60fa3761c4d58995610949b31
+        url: https://prdownloads.sourceforge.net/tcl/tcl8.6.18-src.tar.gz
+        sha256: 14f9af32b1767ff718477a8f974ad03c34341097e6b43f4ce54644ee974e268e
         x-checker-data:
           type: anitya
           project-id: 4941
@@ -67,8 +67,8 @@ modules:
       - chmod 755 /app/lib/libtk*.so
     sources:
       - type: archive
-        url: https://prdownloads.sourceforge.net/tcl/tk8.6.17-src.tar.gz
-        sha256: e4982df6f969c08bf9dd858a6891059b4a3f50dc6c87c10abadbbe2fc4838946
+        url: https://prdownloads.sourceforge.net/tcl/tk8.6.18-src.tar.gz
+        sha256: 95cd528a80f5e4bdb557af9b14a7197d6860793a3894e25e7c9fad2ed05d4c3c
         x-checker-data:
           type: anitya
           project-id: 11426
@@ -110,8 +110,10 @@ modules:
     build-commands:
       - ./scripts/auto-build/pd-extended-release-auto-builder.sh
       - mv ${FLATPAK_DEST}/share/mime/packages/{pd-extended,$FLATPAK_ID}.xml
-      - mv ${FLATPAK_DEST}/share/icons/hicolor/128x128/mimetypes/{,$FLATPAK_ID.}text-x-puredata.png
-      - mv ${FLATPAK_DEST}/share/icons/hicolor/48x48/mimetypes/{,$FLATPAK_ID.}text-x-puredata.png
+      - mv 
+        ${FLATPAK_DEST}/share/icons/hicolor/128x128/mimetypes/{,$FLATPAK_ID.}text-x-puredata.png
+      - mv 
+        ${FLATPAK_DEST}/share/icons/hicolor/48x48/mimetypes/{,$FLATPAK_ID.}text-x-puredata.png
       - desktop-file-edit --set-key=Exec --set-value="pd-extended %F" ${FLATPAK_DEST}/share/applications/pd-extended.desktop
       # AppStream metadata (for app store / package manager)
       - install -Dm644 -t  /app/share/metainfo info.puredata.Pd-extended.metainfo.xml
